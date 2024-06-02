@@ -1,18 +1,4 @@
-// Package figures is a extension for the goldmark
-// (http://github.com/yuin/goldmark).
-//
-// This extension adds html render for paragraph with image output as figure.
-//
-// An image with nonempty alt text, occurring by itself in a paragraph, will be
-// rendered as a figure with a caption. The image’s alt text will be used as the
-// caption.
-//  ![**Figure:** [description](/link)](image.png "title")
-// This syntax is borrowed from [Pandoc](https://pandoc.org/MANUAL.html#images).
-//
-// If you just want a regular inline image, just make sure it is not the only
-// thing in the paragraph. One way to do this is to insert a nonbreaking space
-// after the image:
-//  ![This image won't be a figure](/url/of/image.png)\
+//SPDX-License-Identifier: MIT
 package figures
 
 import (
@@ -135,6 +121,3 @@ func (a *extension) Extend(m goldmark.Markdown) {
 
 // Extension is a goldmark.Extender with markdown image figures support.
 var Extension goldmark.Extender = new(extension)
-
-// Enable is a goldmark.Option with image figures support.
-var Enable = goldmark.WithExtensions(Extension)
