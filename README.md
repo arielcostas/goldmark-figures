@@ -28,6 +28,12 @@ Pero con esta extensión se renderiza tal que:
 </figure>
 ```
 
+## Instalación
+
+```bash
+go get github.com/arielcostas/goldmark-figures
+```
+
 ## Uso
 
 Al instanciar Goldmark, añadir la extensión:
@@ -36,7 +42,7 @@ Al instanciar Goldmark, añadir la extensión:
 package main
 
 import (
-	gmf "github.com/mdigger/goldmark-figures"
+	gmf "github.com/arielcostas/goldmark-figures"
 	"github.com/yuin/goldmark"
 )
 
@@ -44,3 +50,8 @@ var parser goldmark.Markdown = goldmark.New(
 	goldmark.WithExtensions(gmf.Extension),
 )
 ```
+
+## Licencia
+
+El código original de [mdigger](https://github.com/mdigger/goldmark-figures) está
+bajo la licencia MIT. Este fork también lo está.
