@@ -1,31 +1,46 @@
-# goldmark-figures
+# goldmark-figures FORK
 
-[![GoDoc](https://godoc.org/github.com/mdigger/goldmark-figures?status.svg)](https://godoc.org/github.com/mdigger/goldmark-figures)
+[Original](https://github.com/mdigger/goldmark-figures)
 
-This [goldmark](https://github.com/yuin/goldmark) parser extension adds 
-paragraph image render as figure.
+Este repositorio es un sencillo fork de una extensión de Goldmark para renderizar
+imágenes con el elemento HTML `<figure>` con un `<figcaption>` de la descripción,
+en lugar del comportamiento habitual de Goldmark, que es ponerlo como `alt` en la
+`<image>`
 
-An image with nonempty alt text, occurring by itself in a paragraph, will be 
-rendered as a figure with a caption. The image’s alt text will be used as the 
-caption.
+Tomemos por ejemplo el siguiente código Markdown:
 
 ```markdown
-![**Figure:** [description](/link)](image.png "title")
+![Un texto alternativo](/image.png)
 ```
+
+Normalmente se mostraría en HTML como:
+
+```html
+<img src="image.png" alt="Un texto alternativo">
+```
+
+Pero con esta extensión se renderiza tal que:
 
 ```html
 <figure>
-<img src="image.png" alt="Figure: description" title="title">
-<figcaption><strong>Figure:</strong> <a href="/link">description</a></figcaption>
+	<img src="image.png" alt="Un texto alternativo" title="Un texto alternativo">
+	<figcaption>Un texto alternativo</figcaption>
 </figure>
 ```
 
-If you just want a regular inline image, just make sure it is not the only thing 
-in the paragraph. One way to do this is to insert a nonbreaking space after the 
-image:
+## Uso
 
-```markdown
-![This image won't be a figure](/url/of/image.png)\
+Al instanciar Goldmark, añadir la extensión:
+
+```go
+package main
+
+import (
+	gmf "github.com/mdigger/goldmark-figures"
+	"github.com/yuin/goldmark"
+)
+
+var parser goldmark.Markdown = goldmark.New(
+	goldmark.WithExtensions(gmf.Extension),
+)
 ```
-
-This syntax is borrowed from [Pandoc](https://pandoc.org/MANUAL.html#images).
