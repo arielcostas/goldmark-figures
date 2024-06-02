@@ -90,6 +90,7 @@ func (r *render) renderImage(w util.BufWriter, source []byte, node ast.Node, ent
 	w.WriteString(`" alt="`)
 	w.Write(n.Text(source))
 	w.WriteByte('"')
+	w.WriteString(`" loading="lazy"`)
 	if n.Title != nil {
 		w.WriteString(` title="`)
 		r.Writer.Write(w, n.Title)
