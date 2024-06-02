@@ -1,4 +1,4 @@
-module github.com/mdigger/goldmark-figures
+module github.com/arielcostas/goldmark-figures
 
 go 1.21
 
